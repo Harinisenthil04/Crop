@@ -1,0 +1,41 @@
+.admin-cards {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(160px, 1fr));
+	gap: 1rem;
+	margin: 1.4rem 0;
+}
+
+.report-card {
+	padding: 1rem;
+	border-radius: 16px;
+	background-color: var(--accent-bg);
+	border: 1px solid var(--accent-color);
+	color: var(--accent-dark);
+}
+
+.report-card strong {
+	display: block;
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.report-list h2 {
+	margin-bottom: 0.8rem;
+	color: var(--accent-dark);
+}
+
+.report-list {
+	width: clamp(300px, 100%, 800px);
+	min-width: 300px;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--primary-color);
+	box-shadow: 0 2px 0.5rem rgba(0, 0, 0, 0.3);
+	display: grid;
+	gap: 1rem;
+	margin-top: 1.2rem;
+}
+
+.report-list li {
+	margin-bottom: 0.6rem;
+}

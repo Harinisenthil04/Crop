@@ -1,0 +1,73 @@
+<div class="a-page">
+	<div class="dashboard-header">
+		<div class="header-content">
+			<h1>{{greeting()}}, {{mockUser.email.split('@')[0]}}</h1>
+			<p class="subtitle">System Status: <span class="status-dot"></span> Market is Open | {{today}}</p>
+		</div>
+	</div>
+
+	<div class="page-content">
+		<div class="metrics-grid">
+			@for (s of stats(); track s.label) {
+			<div class="metric-card">
+				<div class="metric-icon" [style.background]="s.bg">{{s.icon}}</div>
+				<div class="metric-info">
+					<span class="metric-label">{{s.label}}</span>
+					<h2 class="metric-value">{{s.value}}</h2>
+				</div>
+			</div>
+			}
+		</div>
+
+		<div class="main-grid">
+			<div class="content-card">
+				<div class="card-header">
+					<h3>Trader Workbench</h3>
+				</div>
+				<div class="card-body">
+					<div class="actions-list">
+						@for (q of quick(); track q.label) {
+						<a class="action-item" [routerLink]="q.route">
+							<div class="action-icon">{{q.icon}}</div>
+							<div class="action-text">
+								<span class="action-label">{{q.label}}</span>
+								<span class="action-desc">{{q.desc}}</span>
+							</div>
+							<div class="action-arrow">→</div>
+						</a>
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="content-card">
+				<div class="card-header">
+					<h3>Session Details</h3>
+				</div>
+				<div class="card-body">
+					<div class="info-table">
+						<div class="info-row">
+							<span>Trading ID</span>
+							<span class="val">#TRD-9921-X</span>
+						</div>
+						<div class="info-row">
+							<span>Role Access</span>
+							<span class="badge buyer">Verified Buyer</span>
+						</div>
+						<div class="info-row">
+							<span>Region</span>
+							<span class="val">North India Hub</span>
+						</div>
+						<div class="info-row">
+							<span>API Gateway</span>
+							<span class="badge secure">Secure Sync</span>
+						</div>
+					</div>
+					<div class="alert-box">
+						<p>⚠️ <strong>Price Alert:</strong> Wheat prices are up 2% in your region.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

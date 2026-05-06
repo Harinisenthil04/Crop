@@ -1,0 +1,82 @@
+.summary-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(150px, 1fr));
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.summary-card {
+	padding: 1.2rem 1rem;
+	border-radius: 16px;
+	background-color: var(--accent-bg);
+	border: 1px solid var(--accent-color);
+	color: var(--accent-dark);
+}
+
+.summary-card span {
+	display: block;
+	font-size: 0.95rem;
+	margin-bottom: 0.6rem;
+}
+
+.summary-card strong {
+	font-size: 2rem;
+	line-height: 1;
+}
+
+.analytics-panel {
+	padding: 1rem;
+	border-radius: 18px;
+	background-color: white;
+	border: 1px solid rgba(66, 0, 96, 0.12);
+}
+
+.analytics-panel header {
+	margin-bottom: 1rem;
+}
+
+.analytics-panel h2 {
+	margin: 0;
+	color: var(--accent-dark);
+}
+
+.analytics-panel p {
+	margin: 0.4rem 0 0;
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.chart-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+}
+
+.chart-row {
+	display: grid;
+	grid-template-columns: 1.4fr 4fr auto;
+	align-items: center;
+	gap: 0.8rem;
+}
+
+.row-label {
+	font-size: 0.95rem;
+	color: var(--accent-dark);
+}
+
+.bar-track {
+	height: 0.9rem;
+	background-color: var(--accent-transparent);
+	border-radius: 999px;
+}
+
+.bar-fill {
+	display: block;
+	height: 100%;
+	background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
+	border-radius: 999px;
+}
+
+.row-value {
+	font-size: 0.95rem;
+	color: var(--accent-dark);
+}

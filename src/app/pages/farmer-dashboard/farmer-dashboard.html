@@ -1,0 +1,43 @@
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <h3>AgriChain</h3>
+        <nav>
+            <a class="active">Dashboard</a>
+            <a>Crop Listings</a>
+            <a>Subsidies</a>
+            <a>Settings</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Welcome, {{ farmerName() }}</h1>
+            <span class="status-pill" [class.pending]="status() === 'PENDING'">
+                {{ status() }}
+            </span>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>0</h3>
+                <p>Listed Crops</p>
+            </div>
+            <div class="stat-card">
+                <h3>₹ 0.00</h3>
+                <p>Earnings</p>
+            </div>
+            <div class="stat-card">
+                <h3>0</h3>
+                <p>Alerts</p>
+            </div>
+        </div>
+
+        <div class="action-card">
+            <h2>Quick Actions</h2>
+            <div class="btn-group">
+                <button class="action-btn">Add New Crop</button>
+                <button class="action-btn">Apply for Subsidy</button>
+            </div>
+        </div>
+    </main>
+</div>

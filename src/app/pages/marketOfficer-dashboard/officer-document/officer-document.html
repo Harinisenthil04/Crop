@@ -1,0 +1,52 @@
+<div class="doc-verification-container">
+  <!-- Left Sidebar: List of documents to check -->
+  <aside class="doc-sidebar">
+    <div class="sidebar-header">
+      <h3>Documents Queue</h3>
+      <span class="count-pill">{{ listingsWithDocs.length }}</span>
+    </div>
+    <div class="doc-list">
+      @for (item of listingsWithDocs; track item.listingId) {
+        <div class="doc-item" [class.active]="selectedListing?.listingId === item.listingId" (click)="previewDoc(item)">
+          <div class="doc-info">
+            <span class="farmer-id">Farmer #{{ item.farmerId }}</span>
+            <span class="crop-name">{{ item.cropType }}</span>
+          </div>
+          <span class="status-indicator">●</span>
+        </div>
+      }
+    </div>
+  </aside>
+
+  <!-- Right Side: Document Preview & Action Area -->
+  <main class="doc-viewer">
+    @if (selectedListing) {
+      <div class="viewer-header">
+        <h2>Verifying: {{ selectedListing.cropType }}</h2>
+        <div class="btn-group">
+          <button class="btn-approve" (click)="approve(selectedListing.listingId!)">Verify & Approve</button>
+        </div>
+      </div>
+
+      <div class="viewer-content">
+        <div class="doc-card">
+          <div class="card-meta">
+            <p><strong>Quantity:</strong> {{ selectedListing.quantity }} kg</p>
+            <p><strong>Location:</strong> {{ selectedListing.location }}</p>
+          </div>
+          <div class="iframe-container">
+            <!-- Simulated Document Embed -->
+            <iframe [src]="selectedListing.documentUrl" frameborder="0"></iframe>
+            <div class="fallback-link">
+              <p>Cannot preview? <a [href]="selectedListing.documentUrl" target="_blank">Open in new tab</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="empty-preview">
+        <p>Select a listing from the queue to verify documents</p>
+      </div>
+    }
+  </main>
+</div>

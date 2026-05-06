@@ -1,0 +1,46 @@
+<div class="a-page admin-panel">
+	<section class="section-header">
+		<div class="section-header-subsection">
+			<h1>Admin Dashboard</h1>
+			<p>Analytics and operational totals.</p>
+		</div>
+	</section>
+
+	<section class="summary-grid">
+		<article class="summary-card">
+			<span>Total Reports</span>
+			<strong>{{ totalReports() }}</strong>
+		</article>
+		<article class="summary-card">
+			<span>Pending Reviews</span>
+			<strong>{{ pendingReviews() }}</strong>
+		</article>
+		<article class="summary-card">
+			<span>Notifications</span>
+			<strong>{{ totalNotifications() }}</strong>
+		</article>
+		<article class="summary-card">
+			<span>Success Rate</span>
+			<strong>{{ transactionSuccess() }}%</strong>
+		</article>
+	</section>
+
+	<section class="analytics-panel">
+		<header>
+			<h2>Performance metrics</h2>
+			<p>Last 7 days overview for report, audit, and transaction health.</p>
+		</header>
+
+		<div class="chart-card">
+			@for(metric of metrics(); track metric.label) {
+				<div class="chart-row">
+					<span class="row-label">{{ metric.label }}</span>
+								<div class="bar-track">
+						<span class="bar-fill" [style.width.%]="metric.value"></span>
+					</div>
+					<span class="row-value">{{ metric.value }}%</span>
+				</div>
+			}
+		</div>
+	</section>
+</div>

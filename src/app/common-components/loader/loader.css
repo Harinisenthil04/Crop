@@ -1,0 +1,91 @@
+.loader-cover, .loader-container {
+    display: flex;
+    justify-content: center;
+}
+.loader-cover {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    z-index: 40;
+}
+.loader-container {
+    position: relative;
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.12);
+    align-items: flex-end;
+    pointer-events: none;
+}
+.loader-container::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border-bottom: 2px solid var(--accent-dark);
+    z-index: -1;
+    animation: rotate 1.5s ease infinite;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+.leaf {
+    position: absolute;
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+    animation: leaf-ani 3s linear infinite;
+}
+.leaf1 {
+    top: 37%;
+    left: 38%;
+    --leaf-value: -30deg;
+    animation-delay: 0s;
+}
+.leaf2 {
+    left: 0.75rem;
+    bottom: 1.5rem;
+    --leaf-value: -60deg;
+    animation-delay: 0.2s;
+}
+.leaf3 {
+    right: 0.6rem;
+    bottom: 1.2rem;
+    --leaf-value: 60deg;
+    animation-delay: 0.5s;
+}
+
+.leaf-svg1 {
+    transform: rotate(60deg);
+}
+.leaf-svg2 {
+    transform: rotate(0deg);
+}
+.leaf-svg3 {
+    transform: rotate(100deg);
+}
+
+@keyframes leaf-ani {
+    0% {
+        transform: rotate(var(--leaf-value)) scale(0);
+    }
+    12% {
+        transform: rotate(0deg) scale(1.2);
+    }
+    15% {
+        transform: scale(0.9);
+    }
+    20%, 85% {
+        transform: scale(1);
+    }
+    100% {
+        transform: translateY(5.2rem) rotate(var(--leaf-value));
+    }
+}

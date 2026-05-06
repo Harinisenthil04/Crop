@@ -1,0 +1,92 @@
+<div class="page-content">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <h1>Market Oversight Dashboard</h1>
+    <div class="subtitle">
+      <span class="status-dot"></span>
+      Officer Authorization Active • Inventory & Quality Control
+    </div>
+  </div>
+
+  <div style="padding: 2.5rem;">
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon" style="background: #fff4e6; color: #fd7e14;">⏳</div>
+        <div>
+          <span class="metric-label">Pending Approval</span>
+          <h2 class="metric-value">{{ metrics.pending }}</h2>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon" style="background: #e8f5e9; color: #2e7d32;">✅</div>
+        <div>
+          <span class="metric-label">Validated Crops</span>
+          <h2 class="metric-value">{{ metrics.totalValidated }}</h2>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon" style="background: #e3f2fd; color: #1976d2;">🚜</div>
+        <div>
+          <span class="metric-label">Active Listings</span>
+          <h2 class="metric-value">{{ pendingListings.length + validatedListings.length }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+      <!-- Left Column: Pending Approvals -->
+       <loader> </loader>
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Listings Awaiting Validation</h3>
+        </div>
+        <div class="card-body">
+          <div class="actions-list">
+            @for (item of pendingListings; track item.listingId) {
+              <div class="action-item">
+                <div class="action-icon">📦</div>
+                <div class="action-text">
+                  <span class="action-label">{{ item.cropType }} - {{ item.quantity }}kg</span>
+                  <span class="action-desc">Farmer ID: {{ item.farmerId }} | Loc: {{ item.location }}</span>
+                </div>
+                <button (click)="onValidate(item.listingId!)" 
+                        style="background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+                  Approve
+                </button>
+              </div>
+            } @empty {
+              <p style="color: #636e72; text-align: center;">No pending approvals at this time.</p>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: System Status & Recent Activity -->
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Market Insights</h3>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <span>Market Integrity</span>
+            <span class="badge secure">SECURE</span>
+          </div>
+          <div class="info-row">
+            <span>Validation Queue</span>
+            <span>{{ pendingListings.length }} Items</span>
+          </div>
+          <div class="info-row">
+            <span>Last Sync</span>
+            <span>Just now</span>
+          </div>
+
+          <div class="alert-box">
+            <strong>Officer Notice:</strong> Please ensure all moisture levels and quality certificates are verified before clicking "Approve".
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

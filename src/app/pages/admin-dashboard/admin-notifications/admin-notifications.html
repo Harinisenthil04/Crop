@@ -1,0 +1,74 @@
+<div class="a-page admin-panel">
+	<section class="section-header">
+		<div class="section-header-subsection">
+			<h1>Notifications</h1>
+			<p>Broadcast & Manage notifications</p>
+		</div>
+		<button class="btn btn-primary" (click)="openCreateForm()">Broadcast Notification</button>
+	</section>
+
+	@if (showForm()) {
+		<section class="card-form-section">
+			<h2>Create Broadcast Notification</h2>
+			<form (ngSubmit)="submitForm()" class="form-container">
+				<div class="input-box">
+					<label class="input-label" for="notification-subject">Subject</label>
+					<input type="text" class="input-field" id="notification-subject" [(ngModel)]="notificationForm.subject" name="notification-subject" required />
+				</div>
+				<div class="input-box">
+					<label class="input-label" for="notification-message">Message</label>
+					<textarea class="input-field" id="notification-message" [(ngModel)]="notificationForm.message" name="notification-message" rows="3" required></textarea>
+				</div>
+				<div class="input-box">
+					<label class="input-label">Target Role (Leave blank for all)</label>
+					<select class="input-field" [(ngModel)]="notificationForm.role" name="role">
+						<option value="">All Roles</option>
+						@for(r of roles; track r) {
+							<option [value]="r">{{ r }}</option>
+						}
+					</select>
+				</div>
+				<div class="form-buttons-box">
+					<button type="submit" class="btn btn-primary" style="margin-right: 0.5rem;">Broadcast</button>
+					<button type="button" class="btn btn-secondary" (click)="cancelForm()">Cancel</button>
+				</div>
+			</form>
+		</section>
+	}
+
+	<div class="notification-list">
+		<h3>Past Notifications</h3>
+		@if (loading()) {
+			<loader />
+		} @else {
+			<table class="a-table">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Message</th>
+						<th>Role</th>
+						<th>Created Date</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for(notification of notifications(); track notification.notificationID) {
+						<tr>
+							<td>{{ notification.subject }}</td>
+							<td>{{ notification.message }}</td>
+							<td><p class="notification-role">{{ notification.role || 'ALL'}}</p></td>
+							<td>{{ notification.createdDate }}</td>
+							<td>
+								<button class="btn btn-danger" (click)="deleteNotification(notification.notificationID)">
+									<fa-icon [icon]="faDelete" />
+								</button>
+							</td>
+						</tr>
+					} @empty {
+						<p>No broadcast notifications found.</p>
+					}
+				</tbody>
+			</table>
+		}
+	</div>
+</div>

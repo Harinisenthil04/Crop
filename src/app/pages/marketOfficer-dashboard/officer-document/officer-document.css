@@ -1,0 +1,79 @@
+.doc-verification-container {
+  display: flex;
+  height: calc(100vh - 120px);
+  background: #f8f9fa;
+}
+
+/* Sidebar List */
+.doc-sidebar {
+  width: 300px;
+  background: white;
+  border-right: 1px solid #e2ddd5;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doc-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f9f9f9;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
+}
+
+.doc-item:hover { background: #f0f7f4; }
+.doc-item.active { background: #e6eee9; border-left: 4px solid #1a4d2e; }
+
+.farmer-id { display: block; font-size: 0.75rem; color: #636e72; }
+.crop-name { font-weight: 700; color: #1a4d2e; }
+
+/* Viewer Pane */
+.doc-viewer {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.viewer-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.iframe-container {
+  width: 100%;
+  height: 600px;
+  background: #eee;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+iframe { flex: 1; border-radius: 8px 8px 0 0; }
+
+.btn-approve {
+  background: #1a4d2e;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.empty-preview {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b2bec3;
+}

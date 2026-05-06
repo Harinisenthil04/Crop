@@ -1,0 +1,87 @@
+<div class="a-public-page register-page">
+    <div class="register-container">
+        
+        <!-- Header Section -->
+        <div class="form-header">
+            <website-name></website-name>
+            <h2>Farmer Registration Form</h2>
+            <p>Please fill in the details below to register your land.</p>
+        </div>
+
+        <form class="register-form">
+            <div class="form-scroll-area">
+                <div class="form-grid">
+                    <!-- Identity Section -->
+                    <div class="input-box full-width">
+                        <label>User ID *</label>
+                        <input type="text" placeholder="Enter your user ID" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Full Name *</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Date of Birth *</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Phone Number *</label>
+                        <input type="tel" placeholder="Enter 10-digit phone number" required>
+                    </div>
+
+                    <div class="input-box full-width">
+                        <label>Gender *</label>
+                        <select required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Details Section -->
+                    <div class="input-box full-width">
+                        <label>Address *</label>
+                        <textarea rows="3" placeholder="Enter your complete address" required></textarea>
+                    </div>
+
+                    <div class="input-box full-width">
+                        <label>Land Details *</label>
+                        <textarea rows="3" placeholder="Enter details about your land (size, location, type, etc.)" required></textarea>
+                    </div>
+
+                    <!-- Required Documents -->
+                    <div class="docs-section full-width">
+                        <h4 class="docs-title">Required Documents</h4>
+                        
+                        <div class="file-upload-box">
+                            <label>ID Proof Document * (JPG, PNG, PDF)</label>
+                            <input type="file" class="file-input" required>
+                        </div>
+
+                        <div class="file-upload-box">
+                            <label>Land Record Document * (JPG, PNG, PDF)</label>
+                            <input type="file" class="file-input" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="form-footer">
+                <button type="submit" class="btn-register">REGISTER AS FARMER</button>
+                <button type="reset" class="btn-clear">CLEAR FORM</button>
+            </div>
+            
+            <p class="footer-note">* All fields are mandatory. Please ensure all documents are in proper format.</p>
+        </form>
+    </div>
+</div>

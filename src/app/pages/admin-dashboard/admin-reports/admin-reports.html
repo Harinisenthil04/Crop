@@ -1,0 +1,72 @@
+<div class="a-page admin-panel">
+	<section class="section-header">
+		<div class="section-header-subsection">
+			<h1>Reports</h1>
+			<p>Create & Manage Reports</p>
+		</div>
+		<button class="btn btn-primary" (click)="openCreateForm()">Generate Report</button>
+	</section>
+
+	<div class="admin-cards">
+		<article class="report-card">
+			<strong>{{ reports().length }}</strong>
+			<span>Total Reports</span>
+		</article>
+	</div>
+
+	@if (showForm()) {
+		<section class="card-form-section">
+			<h2>{{ editingId() ? 'Edit' : 'Generate' }} Report</h2>
+			<form (ngSubmit)="submitForm()" class="form-container">
+				<div class="input-box" >
+					<label class="input-label">Scope</label>
+					<input type="text" class="input-field" [(ngModel)]="reportForm.scope" name="scope" required />
+				</div>
+				<div class="input-box">
+					<label class="input-label">Metrics</label>
+					<textarea class="input-field" [(ngModel)]="reportForm.metrics" name="metrics" rows="3" required></textarea>
+				</div>
+				<div class="form-buttons-box">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="button" class="btn btn-secondary" (click)="cancelForm()">Cancel</button>
+				</div>
+			</form>
+		</section>
+	}
+
+	<section class="report-list">
+		<h2>Recent reports</h2>
+		@if (loading()) {
+			<loader />
+		} @else {
+			<table>
+				<thead>
+					<th>Scope</th>
+					<th>Metrics</th>
+					<th>Generated date</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+					@for(report of reports(); track report.reportId) {
+						<tr>
+							<td>{{ report.scope }}</td>
+							<td>{{ report.metrics }}</td>
+							<td>{{ report.generatedDate }}</td>
+							<td>
+								<button class="btn btn-info" (click)="openEditForm(report)">
+									<fa-icon [icon]="faEdit" />
+								</button>
+							</td>
+							<td>
+								<button class="btn btn-danger" (click)="deleteReport(report.reportId)">
+									<fa-icon [icon]="faDelete" />
+								</button>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+	</section>
+</div>

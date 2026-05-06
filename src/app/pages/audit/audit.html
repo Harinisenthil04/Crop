@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-success text-white">
+      <h2 class="mb-0">New Audit Entry</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="submitAudit()" #auditForm="ngForm">
+        <div class="row g-3">
+          <!-- Officer ID -->
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Officer ID</label>
+            <input type="number" name="officerId" class="form-control" [(ngModel)]="newAudit.officerId" required placeholder="e.g. 101">
+          </div>
+
+          <!-- Audit Scope -->
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Audit Scope</label>
+            <select name="scope" class="form-select" [(ngModel)]="newAudit.scope">
+              <option value="PROGRAM">Program</option>
+              <option value="LISTING">Listing</option>
+              <option value="TRANSACTION">Transaction</option>
+            </select>
+          </div>
+
+          <!-- Audit Status -->
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Audit Status</label>
+            <select name="status" class="form-select" [(ngModel)]="newAudit.status">
+              <option value="OPEN">Open</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="REVIEW">Review</option>
+              <option value="CLOSED">Closed</option>
+            </select>
+          </div>
+
+          <!-- Findings Summary -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Findings Summary</label>
+            <textarea name="findings" class="form-control" rows="3" [(ngModel)]="newAudit.findings" placeholder="Detail your observations here..."></textarea>
+          </div>
+
+          <!-- Date -->
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Date of Audit</label>
+            <input type="date" name="date" class="form-control" [(ngModel)]="newAudit.date">
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-success px-4" [disabled]="!auditForm.valid">Submit Audit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Recent Records Table -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h3 class="mb-0">Recent Records</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Scope</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Findings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let audit of audits">
+            <td><strong>#{{audit.auditId}}</strong></td>
+            <td><span class="badge bg-secondary">{{audit.scope}}</span></td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'bg-info': audit.status === 'OPEN',
+                'bg-warning text-dark': audit.status === 'IN_PROGRESS',
+                'bg-primary': audit.status === 'REVIEW',
+                'bg-success': audit.status === 'CLOSED'
+              }">{{audit.status}}</span>
+            </td>
+            <td>{{audit.date}}</td>
+            <td class="text-truncate" style="max-width: 200px;">{{audit.findings}}</td>
+          </tr>
+          <tr *ngIf="audits.length === 0">
+            <td colspan="5" class="text-center py-4 text-muted">No audit records found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

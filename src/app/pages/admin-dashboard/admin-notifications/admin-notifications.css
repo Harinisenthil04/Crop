@@ -1,0 +1,45 @@
+.notification-list {
+	width: clamp(300px, 100%, 800px);
+	min-width: 300px;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--primary-color);
+	box-shadow: 0 2px 0.5rem rgba(0, 0, 0, 0.3);
+	display: grid;
+	gap: 1rem;
+	margin-top: 1.2rem;
+}
+
+.notification-role {
+	padding: 0.1rem 0.3rem;
+	border-radius: 99px;
+	background-color: var(--accent-color);
+	color: black;
+}
+
+.notification-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.notification-options {
+	display: flex;
+	flex-direction: column;
+}
+.notification-meta-info {
+	display: flex;
+}
+
+.notification-card small {
+	display: block;
+	margin-top: 0.75rem;
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.status {
+	padding: 0.15rem 0.65rem;
+	border-radius: 999px;
+	background-color: var(--accent-color);
+	color: white;
+	font-size: 0.8rem;
+}

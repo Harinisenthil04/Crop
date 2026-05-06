@@ -1,0 +1,82 @@
+<div class="a-public-page login-signup-page">
+    <div class="{{account_method() === 'login' ? 'login-signup-container' : 'login-signup-container active-signup'}}">
+        <div class="side-info-container">
+            @if(account_method() === 'login') {
+                <div class="login-ball1"></div>
+                <div class="login-wave1"></div>
+                <div class="login-wave1"></div>
+            } @else {
+                <div class="login-ball2"></div>
+                <div class="login-wave2"></div>
+                <div class="login-wave2"></div>
+            }
+            <div class="side-info-welcome">
+                <website-name></website-name>
+                <h1 class="login-heading">{{account_method() === 'login' ? 'Welcome Back' : 'Create New Account'}}</h1>
+                <p class="login-description">{{account_method() === 'login' ? 'Login now to access dashboard' : 'Create your account now to access your dashboard'}}</p>
+            </div>
+        </div>
+        <form class="form-container login-form-container" (ngSubmit)="onSubmit()">
+            <div class="role-slider {{account_method() === 'login' ? 'login-mode' : 'signup-mode'}}">
+                <label class="farmer-role-slider role-slider-element" for="role-farmer"
+                    [class.active]="role_selected() === 'FARMER'">Farmer
+                    <input type="radio" id="role-farmer" name="role" value="FARMER"
+                        [checked]="role_selected() === 'FARMER'" (change)="onRoleChange('FARMER')"
+                        (change)="onRoleChange('FARMER')">
+                </label>
+                <label class="trader-role-slider role-slider-element" for="role-trader"
+                    [class.active]="role_selected() === 'TRADER'">Trader
+                    <input type="radio" id="role-trader" name="role" value="TRADER"
+                        [checked]="role_selected() === 'TRADER'" (change)="onRoleChange('TRADER')"
+                        (change)="onRoleChange('TRADER')">
+                </label>
+                @if(account_method() === 'login') {
+                    <label class="officer-role-slider role-slider-element" for="role-officer"
+                        [class.active]="role_selected() === 'OFFICER'">Officer
+                        <input type="radio" id="role-officer" name="role" value="OFFICER"
+                            [checked]="role_selected() === 'OFFICER'" (change)="onRoleChange('OFFICER')"
+                            (change)="onRoleChange('OFFICER')">
+                    </label>
+                }
+                <div class="slider-slider" [attr.data-role]="role_selected()"></div>
+            </div>
+            @if(account_method() === 'signup') {
+                <div class="input-box">
+                    <label for="name" class="input-label">Name:</label>
+                    <input type="text" id="name" name="name" class="input-field" [(ngModel)]="formData.name" [required]="account_method() === 'signup'">
+                </div>
+            }
+            <div class="input-box">
+                <label for="email" class="input-label">Email:</label>
+                <input type="email" id="email" name="email" class="input-field" [(ngModel)]="formData.email" required>
+            </div>
+            @if(account_method() === 'signup') {
+                <div class="input-box">
+                    <label for="phone" class="input-label">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="input-field" [(ngModel)]="formData.phone" [required]="account_method() === 'signup'">
+                </div>
+            }
+            <div class="input-box">
+                <label for="password" class="input-label">Password:</label>
+                <input type="password" id="password" name="password" class="input-field" [(ngModel)]="formData.password" required>
+            </div>
+            @if(account_method() === 'signup') {
+                <div class="input-box">
+                    <label for="confirm-password" class="input-label">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" class="input-field" [(ngModel)]="formData.confirmPassword" [required]="account_method() === 'signup'">
+                </div>
+                <div class="input-box">
+                    <p>Already have an account? <span class="method-change-text"
+                            (click)="onAccountMethodChange('login')">Login</span></p>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Sign Up</button>
+            } @else {
+                <div class="input-box">
+                    <p>Don't have an account? <span class="method-change-text"
+                            (click)="onAccountMethodChange('signup')">Sign up</span></p>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Login</button>
+            }
+        </form>
+    </div>
+</div>

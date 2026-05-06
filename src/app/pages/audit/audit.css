@@ -1,0 +1,8 @@
+/* Add any custom overrides here */
+:host {
+  display: block;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: transparent !important;
+}

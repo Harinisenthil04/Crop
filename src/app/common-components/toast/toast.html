@@ -1,0 +1,8 @@
+@if (toastService.toast(); as currentToast) {
+    <div class="toast" [ngClass]="currentToast.type">
+        <span class="toast-message">{{ currentToast.message }}</span>
+        <button class="toast-close" (click)="toastService.clear()">
+            <fa-icon [icon]="faClose" />
+        </button>
+    </div>
+}

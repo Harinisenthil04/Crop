@@ -1,0 +1,128 @@
+<div class="officer-console">
+  <!-- Sub-Navigation (Consolidated Console) -->
+  <nav class="console-nav">
+    <button [class.active]="activeModule === 'dashboard'" (click)="setModule('dashboard')">🏠 Dashboard</button>
+    <button [class.active]="activeModule === 'crops'" (click)="setModule('crops')">🌱 Crop Listings</button>
+    <button [class.active]="activeModule === 'documents'" (click)="setModule('documents')">📄 Documents</button>
+    <button [class.active]="activeModule === 'subsidies'" (click)="setModule('subsidies')">💰 Subsidies</button>
+  </nav>
+
+  <div class="console-body">
+    
+    <!-- 1. DASHBOARD OVERVIEW -->
+    <div *ngIf="activeModule === 'dashboard'" class="fade-in">
+      <header class="section-header">
+        <h1>Dashboard Overview</h1>
+        <div class="search-container">
+          <input type="text" placeholder="Global search across listings, documents, subsidies...">
+        </div>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon yellow">🕒</div>
+          <div class="stat-info"><span>Pending Crops</span> <h3>{{stats.pendingCrops}}</h3></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">📁</div>
+          <div class="stat-info"><span>Doc Reviews</span> <h3>{{stats.awaitingDocs}}</h3></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon cyan">💎</div>
+          <div class="stat-info"><span>Subsidy Apps</span> <h3>{{stats.subsidyApps}}</h3></div>
+        </div>
+      </div>
+
+      <div class="dashboard-footer-grid">
+        <div class="activity-feed">
+          <h4>Recent Activity</h4>
+          <ul>
+            <li>✅ Approved Wheat Listing #LST-99 (2 mins ago)</li>
+            <li>❌ Rejected License #DOC-44 (1 hour ago)</li>
+            <li>💰 New Subsidy Application: Farmer Patil</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. CROP LISTINGS MANAGEMENT -->
+    <div *ngIf="activeModule === 'crops'" class="fade-in">
+      <header class="section-header">
+        <h2>Crop Listing Validation</h2>
+      </header>
+      <div class="table-container">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Farmer</th>
+              <th>Crop</th>
+              <th>Quantity</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of pendingListings">
+              <td>#{{item.listingId}}</td>
+              <td>Farmer-{{item.farmerId}}</td>
+              <td><strong>{{item.cropType}}</strong></td>
+              <td>{{item.quantity}} Quintal</td>
+              <td><span class="badge yellow">Pending</span></td>
+              <td>
+                <button class="btn-cyan" (click)="approve(item.listingId!)">Approve</button>
+                <button class="btn-outline">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. DOCUMENT VERIFICATION -->
+    <div *ngIf="activeModule === 'documents'" class="fade-in">
+      <header class="section-header">
+        <h2>Document Review</h2>
+        <p>Verify authenticity of farmer-uploaded licenses and IDs.</p>
+      </header>
+      <!-- Document Table matching image_0f612d.png style -->
+      <div class="table-container">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Doc ID</th>
+              <th>Farmer</th>
+              <th>Type</th>
+              <th>File</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DOC-003</td>
+              <td>Suresh Patil</td>
+              <td>Land Record</td>
+              <td><a href="#" class="file-link">📄 7_12_extract.pdf</a></td>
+              <td>
+                <button class="btn-cyan">Verify</button>
+                <button class="btn-outline red">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. SUBSIDY MANAGEMENT -->
+    <div *ngIf="activeModule === 'subsidies'" class="fade-in">
+      <header class="section-header">
+        <h2>Subsidy Program Management</h2>
+      </header>
+      <div class="empty-state">
+        <p>Eligibility Checker loading...</p>
+        <div class="stat-card">Track allocation: <strong>₹45,00,000 Granted</strong></div>
+      </div>
+    </div>
+
+  </div>
+</div>

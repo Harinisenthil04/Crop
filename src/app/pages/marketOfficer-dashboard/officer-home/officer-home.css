@@ -1,0 +1,133 @@
+:host {
+  --cyan: #20b2aa;
+  --dark-green: #004d40;
+  --bg-light: #f4f7f6;
+}
+
+.officer-console {
+  background: var(--bg-light);
+  min-height: 100vh;
+}
+
+/* Sub-Nav Console Style (Matching image_a29779.png) */
+.console-nav {
+  background-color: var(--cyan);
+  padding: 0 40px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.console-nav button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  border-bottom: 4px solid transparent;
+}
+
+.console-nav button:hover, .console-nav button.active {
+  background: rgba(255,255,255,0.1);
+  border-bottom: 4px solid var(--dark-green);
+}
+
+.console-body {
+  padding: 30px 40px;
+}
+
+/* Quick Stats (Matching image_0045f4.png) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.stat-icon.yellow { background: #fff9db; color: #fcc419; }
+.stat-icon.blue { background: #e7f5ff; color: #228be6; }
+.stat-icon.cyan { background: #e6fcf5; color: var(--cyan); }
+
+/* Table Section (Matching image_0f612d.png) */
+.table-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.agri-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.agri-table th {
+  background-color: var(--dark-green);
+  color: white;
+  text-align: left;
+  padding: 15px;
+}
+
+.agri-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn-cyan {
+  background-color: var(--cyan);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #ced4da;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge.yellow { background: #fff9db; color: #fcc419; }
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
